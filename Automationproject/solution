@@ -1,0 +1,185 @@
+# Solution Overview
+
+## Approach
+Use Maven for dependency management (Selenium, TestNG, WebDriverManager).
+
+Organize the project using POM structure:
+
+pages/ → Page Objects
+
+tests/ → Test classes
+
+resources/ → Test data and config
+
+2. Page Object Model (POM)
+
+Create a BasePage with common reusable methods:
+
+click(), type(), waitForVisibility(), verifyPageTitle()
+
+Each web page has its own class extending BasePage:
+
+LoginPage → login form elements & actions
+
+DashboardPage → dashboard verification actions
+
+AddStudentPage → student form actions
+
+3. Test Layer
+
+Create a BaseTest class to:
+
+Initialize WebDriver
+
+Setup browser and URL
+
+Tear down the browser after tests
+
+Write TestNG test classes that:
+
+Instantiate page objects
+
+Call page methods for actions
+
+Assert expected behavior
+
+4. Test Data Management
+
+Store test data separately in resources/testdata/ (Excel, JSON, or CSV).
+
+Use data-driven testing with TestNG @DataProvider if needed.
+
+5. Waits and Synchronization
+
+Use explicit waits (WebDriverWait) for elements to avoid flaky tests.
+
+Avoid Thread.sleep() unless absolutely necessary.
+
+6. Reporting and Logging
+
+Use TestNG reports for pass/fail results.
+
+Optionally integrate Allure or Extent Reports for better visualization.
+
+## Test Scenarios Implemented
+1. Login Page
+
+Valid Login
+
+Enter valid username and password
+
+Click login
+
+Verify dashboard page loads successfully
+
+Invalid Login
+
+Enter incorrect credentials
+
+Verify proper error message is displayed
+
+Empty Credentials
+
+Leave username/password blank
+
+Verify error message is shown
+
+2. Dashboard Page
+
+Dashboard Visibility
+
+Verify all main dashboard elements are displayed
+
+Navigation to Add Student
+
+Click “Add Student”
+
+Verify the Add Student page loads
+
+3. Add Student Page
+
+Add New Child Student
+
+Fill in basic information (name, email, phone)
+
+Select status and type
+
+Verify student is added successfully
+
+Add New Adult Student
+
+Fill in details for adult student
+
+Verify student is created successfully
+
+Invalid Student Data
+
+Enter invalid email or phone
+
+Verify proper validation error is shown
+
+Mandatory Fields Validation
+
+Leave required fields empty
+
+Verify that submission is blocked
+
+4. Billing Setup Page
+
+Verify Billing Fields
+
+Check that all necessary billing fields are visible
+
+Save Billing Information
+
+Enter billing details and save
+
+Verify success confirmation
+
+5. General Validations
+
+Page Titles
+
+Verify page titles for Login, Dashboard, Add Student, and Billing pages
+
+Element Visibility
+
+Verify critical buttons, forms, and labels are visible
+
+Button Clicks
+
+Verify all buttons respond to clicks properly
+
+## stucture
+MyAutomationProject/
+│
+├── pom.xml                 # Maven configuration
+├── testng.xml              # TestNG suite file
+├── README.md
+│
+├── src/
+│   ├── main/
+│   │   └── java/
+│   │       └── pages/          # Page Object classes
+│   │           ├── BasePage.java
+│   │           ├── LoginPage.java
+│   │           ├── DashboardPage.java
+│   │           ├── AddStudentPage.java
+│   │           ├── BillingSetupPage.java
+│   │           └── StudentListPage.java
+│   │
+│   └── test/
+│       └── java/
+│           └── tests/          # Test classes
+│               ├── BaseTest.java
+│               ├── LoginTest.java
+│               ├── AddStudentTest.java
+│               ├── BillingTest.java
+│               └── StudentListTest.java
+│
+└── resources/
+    └── testdata/               # Test data (Excel, JSON, CSV)
+
+## Challenges Faced 
+cant complete the code,and showing error 
+- [Suggestions for improvement]
